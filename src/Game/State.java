@@ -38,13 +38,18 @@ public class State {
         return bottles[i];
     }
 
-
+    public Bottle[] getBottles() {
+        Bottle[] newBottles = new Bottle[bottles.length];
+        for(int k=0; k<bottles.length; k++){
+            newBottles[k] = new Bottle(bottles[k].getColors().clone());
+        }
+        return newBottles;
+    }
 
     // pour method to pour some layers with the same color from bottle i to bottle j based on empty space in bottle j
-    public State pour(int i, int j) {
-        State newState = new State(numberOfBottles, bottleCapacity, bottles);
-        Bottle bottle1 = newState.getBottle(i);
-        Bottle bottle2 = newState.getBottle(j);
+    public void pour(int i, int j) {
+        Bottle bottle1 = getBottle(i);
+        Bottle bottle2 = getBottle(j);
         int freeSpace = bottle2.getFreeSpace();
         int topColorCapacity = bottle1.getTopColorCapacity();
         int pourAmount = Math.min(freeSpace, topColorCapacity);
@@ -56,7 +61,6 @@ public class State {
             bottle1TopColorIndex--;
             bottle2TopColorIndex++;
         }
-        return newState;
     }
 
 

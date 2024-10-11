@@ -3,27 +3,30 @@ package strategies;
 import Game.Node;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Stack;
 
 public class DepthFirstSearch implements Strategy {
-    ArrayList<Node> queue;
+    Stack<Node> stack;
 
+    //todo: check if input order in stack makes a difference
 
     //Constructor
     public DepthFirstSearch() {
-        queue = new ArrayList<>();
+        stack = new Stack<>();
     }
 
     @Override
     public void add(Node node) {
-        queue.add(node);
+        stack.add(node);
     }
 
     @Override
     public Node remove() {
-        return queue.removeFirst();
+        return stack.pop();
     }
 
     public boolean isEmpty(){
-        return queue.isEmpty();
+        return stack.isEmpty();
     }
 }

@@ -1,4 +1,4 @@
-
+//import code.WaterSortSearch;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -7,7 +7,6 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class PublicTests {
-
     String grid0 = "3;" +
             "4;" +
             "r,y,r,y;" +

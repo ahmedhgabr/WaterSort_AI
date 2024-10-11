@@ -6,6 +6,9 @@ public class WaterSortSearch extends GenericSearch {
 
     public static void main(String[] args) {
         System.out.println(WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "BF" , true));
+        System.out.println(WaterSortSearch.solve("3;" + "4;" + "r,y,r,y;" + "y,r,y,r;" + "e,e,e,e;", "BF" , true));
+        System.out.println(WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "DF" , true));
+        System.out.println(WaterSortSearch.solve("3;" + "4;" + "r,y,r,y;" + "y,r,y,r;" + "e,e,e,e;", "DF" , true));
     }
     /**
      * solve is a method that solves the “Water Sort” search problem. It takes in the following parameters:

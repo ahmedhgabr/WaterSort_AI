@@ -12,6 +12,11 @@ public class Bottle {
         }
     }
 
+    public Bottle(char[] colors) {
+        this.colors = colors;
+        bottleCapacity = colors.length;
+    }
+
     public char[] getColors() {
         return colors;
     }

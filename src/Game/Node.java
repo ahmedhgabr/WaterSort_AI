@@ -69,14 +69,15 @@ public class Node {
     public ArrayList<Node> expand() {
         ArrayList<Node> expandedNodes = new ArrayList<Node>();
         for (int i = 0; i < getNumberOfBottles(); i++) {
-            Bottle bottle1 = state.getBottle(i);
             for (int j = 0; j < getNumberOfBottles(); j++) {
                 if (i != j ) {
-                    Bottle bottle2 = state.getBottle(j);
-                    if(state.getBottle(j).hasSpace() && !state.getBottle(i).isEmpty()
+                    State newState = new State(getNumberOfBottles(), getBottleCapacity(), getState().getBottles());
+                    Bottle bottle1 = newState.getBottle(i);
+                    Bottle bottle2 = newState.getBottle(j);
+                    if(bottle2.hasSpace() && !bottle1.isEmpty()
                             && (bottle1.getTopColor()==bottle2.getTopColor() || bottle2.isEmpty())){
                         //Pour from bottle i to bottle j
-                        State newState = state.pour(i, j);
+                        newState.pour(i,j);
                         Node newNode = new Node(newState, this, "pour_" + i + "_" + j, getDepth() + 1, getPathCost() + 1);
                         expandedNodes.add(newNode);
                     }
@@ -87,14 +88,14 @@ public class Node {
     }
 
 
-    public String[] path() {
-        String[] path = new String[depth + 1];
+    public String getPlan() {
         Node node = this;
-        for (int i = depth; i >= 0; i--) {
-            path[i] = node.operator + " " + node.state;
+        String plan = operator;
+        for (int i = depth; i > 1; i--) {
             node = node.parent;
+            plan = node.operator + "," + plan;
         }
-        return path;
+        return plan;
     }
 
 }

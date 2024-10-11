@@ -3,14 +3,15 @@ package strategies;
 import Game.Node;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class BreadthFirstSearch implements Strategy {
 
-    ArrayList<Node> queue;
+    Queue<Node> queue;
 
     public BreadthFirstSearch() {
-        queue = new ArrayList<>();
+        queue = new LinkedList<>();
     }
 
     @Override
@@ -20,10 +21,10 @@ public class BreadthFirstSearch implements Strategy {
 
     @Override
     public Node remove() {
-        return queue.removeFirst();
+        return queue.poll();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return queue.isEmpty();
     }
 
