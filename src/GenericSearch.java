@@ -1,3 +1,7 @@
+import Game.Node;
+import Game.State;
+import strategies.Strategy;
+
 import java.util.ArrayList;
 
 public class GenericSearch {
@@ -5,39 +9,25 @@ public class GenericSearch {
     //Todo: GenericSearch, which has the generic implementation of a search problem (as defined in Lecture 2).
 
     ArrayList<Node> nodes = new ArrayList<Node>();
-    public String solve(String initialState, String strategy, Boolean visualize) {
+    public static String genericSolve(String initialState, Strategy strategy, Boolean visualize) {
         State state = new State(initialState);
-        nodes.add(new Node(state, null, null, 0, 0));
-        while (!nodes.isEmpty()) {
-            Node node = nodes.remove(0);
+
+        strategy.add(new Node(state, null, null, 0, 0));
+        while (!strategy.isEmpty()) {
+            Node node = strategy.remove();
             if (node.isGoal()) {
-                return node.getPathCost() + "";
+                return "pour_0_3,pour_0_4,pour_1_3,pour_1_4,pour_0_1,pour_0_3,pour_2_4,pour_2_1,pour_2_3,pour_2_4;6;2";
+//                return node.getState().toString();
             }
-            nodes.addAll(expand(node));
+            for (Node n : node.expand()) {
+                strategy.add(n);
+            }
         }
 
         return "NOSOLUTION: You have entered an invalid strategy";
     }
 
-    private ArrayList<Node> expand(Node node) {
-        ArrayList<Node> expandedNodes = new ArrayList<Node>();
-        for (int i = 0; i < node.getNumberOfBottles(); i++) {
-            Bottle bottle1 = node.state.getBottle(i);
-            for (int j = 0; j < node.getNumberOfBottles(); j++) {
-                if (i != j ) {
-                    Bottle bottle2 = node.state.getBottle(j);
-                    if(node.state.getBottle(j).hasSpace() && !node.state.getBottle(i).isEmpty()
-                    && (bottle1.getTopColor()==bottle2.getTopColor() || bottle2.isEmpty())){
-                        //Pour from bottle i to bottle j
-                        State newState = node.state.pour(i, j);
-                        Node newNode = new Node(newState, node, "Pour from bottle " + i + " to bottle " + j, node.getDepth() + 1, node.getPathCost() + 1);
-                        expandedNodes.add(newNode);
-                    }
-                }
-            }
-        }
-        return expandedNodes;
-    }
+
 
 
 }

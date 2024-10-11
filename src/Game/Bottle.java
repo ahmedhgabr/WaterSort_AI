@@ -1,9 +1,12 @@
+package Game;
+
 public class Bottle {
 
     char[] colors;
     int bottleCapacity;
     public Bottle(int capacity) {
         colors = new char[capacity];
+        bottleCapacity = capacity;
         for (int i = 0; i < capacity; i++) {
             colors[i] = 'e';
         }

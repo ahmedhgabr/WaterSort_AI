@@ -4,6 +4,9 @@ public class WaterSortSearch extends GenericSearch {
 
     //Todo:WaterSortSearch, which extends GenericSearch, implementing the “Water Sort” search problem.
 
+    public static void main(String[] args) {
+        System.out.println(WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "BF" , true));
+    }
     /**
      * solve is a method that solves the “Water Sort” search problem. It takes in the following parameters:
      * @param initialState initialState a provided string that defines the parameters of the instance of
@@ -26,8 +29,11 @@ public class WaterSortSearch extends GenericSearch {
      *  plan;pathCost;nodesExpanded
      *  If there is no possible solution, the string ’NOSOLUTION’ should be returned.
      */
-    public String solve(String initialState,String strategy,Boolean visualize){
-        Solver solver = null;
+
+
+    public static String solve(String initialState,String strategy,Boolean visualize){
+
+        Strategy solver = null;
         switch(strategy) {
             case "BF":
                 solver = new BreadthFirstSearch();
@@ -56,7 +62,9 @@ public class WaterSortSearch extends GenericSearch {
             default:
                 return "NOSOLUTION: You have entered an invalid strategy";
         }
-        return solver.solve(initialState, visualize);
+        System.out.println("Here");
+        return genericSolve(initialState, solver, visualize);
+//        return solver.solve(initialState, visualize);
     }
 
 }

@@ -1,6 +1,10 @@
+package Game;
+
+import java.util.ArrayList;
+
 public class Node {
 
-    //Todo: Node, which implements a search-tree node (as defined in Lecture 2).
+    //Todo: Game.Node, which implements a search-tree node (as defined in Lecture 2).
 
     State state;
     Node parent;
@@ -59,6 +63,27 @@ public class Node {
 
     public boolean isGoal() {
         return state.isGoal();
+    }
+
+
+    public ArrayList<Node> expand() {
+        ArrayList<Node> expandedNodes = new ArrayList<Node>();
+        for (int i = 0; i < getNumberOfBottles(); i++) {
+            Bottle bottle1 = state.getBottle(i);
+            for (int j = 0; j < getNumberOfBottles(); j++) {
+                if (i != j ) {
+                    Bottle bottle2 = state.getBottle(j);
+                    if(state.getBottle(j).hasSpace() && !state.getBottle(i).isEmpty()
+                            && (bottle1.getTopColor()==bottle2.getTopColor() || bottle2.isEmpty())){
+                        //Pour from bottle i to bottle j
+                        State newState = state.pour(i, j);
+                        Node newNode = new Node(newState, this, "Pour from bottle " + i + " to bottle " + j, getDepth() + 1, getPathCost() + 1);
+                        expandedNodes.add(newNode);
+                    }
+                }
+            }
+        }
+        return expandedNodes;
     }
 
 

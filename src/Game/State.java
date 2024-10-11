@@ -1,3 +1,5 @@
+package Game;
+
 public class State {
     int numberOfBottles;
     int bottleCapacity;
@@ -58,22 +60,22 @@ public class State {
     }
 
 
-//    public String toString() {
-//        String state = numberOfBottles + ";" + bottleCapacity + ";";
-//        for (int i = 0; i < numberOfBottles; i++) {
-//            Bottle bottle = bottles[i];
-//            for (int j = 0; j < bottleCapacity; j++) {
-//                state += bottle.getColors()[j];
-//                if (j < bottleCapacity - 1) {
-//                    state += ",";
-//                }
-//            }
-//            if (i < numberOfBottles - 1) {
-//                state += ";";
-//            }
-//        }
-//        return state;
-//    }
+    public String toString() {
+        String state = numberOfBottles + ";" + bottleCapacity + ";";
+        for (int i = 0; i < numberOfBottles; i++) {
+            Game.Bottle bottle = bottles[i];
+            for (int j = 0; j < bottleCapacity; j++) {
+                state += bottle.getColors()[j];
+                if (j < bottleCapacity - 1) {
+                    state += ",";
+                }
+            }
+            if (i < numberOfBottles - 1) {
+                state += ";";
+            }
+        }
+        return state;
+    }
 
 
     public boolean isGoal() {
