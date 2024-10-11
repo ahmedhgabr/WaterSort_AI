@@ -16,15 +16,15 @@ public class GenericSearch {
         while (!strategy.isEmpty()) {
             Node node = strategy.remove();
             if (node.isGoal()) {
-                return "pour_0_3,pour_0_4,pour_1_3,pour_1_4,pour_0_1,pour_0_3,pour_2_4,pour_2_1,pour_2_3,pour_2_4;6;2";
-//                return node.getState().toString();
+//                return "pour_0_3,pour_0_4,pour_1_3,pour_1_4,pour_0_1,pour_0_3,pour_2_4,pour_2_1,pour_2_3,pour_2_4;6;2";
+                return node.getState().toString();
             }
             for (Node n : node.expand()) {
                 strategy.add(n);
             }
         }
 
-        return "NOSOLUTION: You have entered an invalid strategy";
+        return "NOSOLUTION";
     }
 
 

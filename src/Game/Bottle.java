@@ -53,6 +53,8 @@ public class Bottle {
         return freeSpace;
     }
 
+    /* getTopColorIndex is a method that returns the index of the top layer with color in the bottle.
+    */
     public int getTopColorIndex(){
         int index = -1;
         for(int i = bottleCapacity-1; i >= 0; i--){
@@ -64,6 +66,10 @@ public class Bottle {
         return index;
     }
 
+    /**
+     * getTopColorCapacity is a method that returns the number of layers with the same color on top of the bottle.
+     * @return
+     */
     public int getTopColorCapacity(){
         int topColorIndex = getTopColorIndex();
         if(topColorIndex == -1){  // bottle is empty

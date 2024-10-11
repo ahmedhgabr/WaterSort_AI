@@ -60,11 +60,9 @@ public class WaterSortSearch extends GenericSearch {
                 solver = new AStarSearch(2);
                 break;
             default:
-                return "NOSOLUTION: You have entered an invalid strategy";
+                return strategy +" is an invalid strategy";
         }
-        System.out.println("Here");
         return genericSolve(initialState, solver, visualize);
-//        return solver.solve(initialState, visualize);
     }
 
 }
