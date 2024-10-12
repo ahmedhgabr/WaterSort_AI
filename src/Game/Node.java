@@ -114,4 +114,8 @@ public class Node {
         return path;
     }
 
+    public String toString(){
+        return "[" + depth + " , " + pathCost +"]";
+    }
+
 }

@@ -3,25 +3,28 @@ package strategies;
 import Game.Node;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class UniformCostSearch implements Strategy {
 
-    ArrayList<Node> queue;
+    PriorityQueue<Node> priorityQueue;
 
     public UniformCostSearch() {
-        queue = new ArrayList<>();
+        priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> n.getPathCost()));
     }
 
     @Override
     public void add(Node node) {
-        queue.add(node);
+        priorityQueue.add(node);
     }
 
     @Override
     public Node remove() {
-        return queue.removeFirst();
+        return priorityQueue.remove();
     }
     public boolean isEmpty(){
-        return queue.isEmpty();
+        return priorityQueue.isEmpty();
     }
 }

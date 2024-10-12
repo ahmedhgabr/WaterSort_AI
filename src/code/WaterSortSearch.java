@@ -45,8 +45,9 @@ public class WaterSortSearch extends GenericSearch {
                 "g,g,b;" +
                 "e,e,e;" +
                 "e,e,e;";
-//        System.out.println(code.WaterSortSearch.solve(grid1, "BF" , true));
-       System.out.println(code.WaterSortSearch.solve(grid1, "DF" , true));
+//        System.out.println(code.WaterSortSearch.solve(grid4, "BF" , true));
+//       System.out.println(code.WaterSortSearch.solve(grid4, "DF" , true));
+        System.out.println(code.WaterSortSearch.solve(grid4, "UC" , true));
 //        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "ID" , true));
 //        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "UC" , true));
 //        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "GR1" , true));
