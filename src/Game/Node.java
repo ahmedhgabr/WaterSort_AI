@@ -1,6 +1,8 @@
 package Game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class Node {
 
@@ -58,7 +60,7 @@ public class Node {
     }
 
     public boolean isLeaf() {
-        return depth == 0;
+        return depth != 0;
     }
 
     public boolean isGoal() {
@@ -66,11 +68,11 @@ public class Node {
     }
 
 
-    public ArrayList<Node> expand() {
+    public ArrayList<Node> expand(HashSet<String> visitedNodes) {
         ArrayList<Node> expandedNodes = new ArrayList<Node>();
         for (int i = 0; i < getNumberOfBottles(); i++) {
             for (int j = 0; j < getNumberOfBottles(); j++) {
-                if (i != j ) {
+                if (i != j) {
                     State newState = new State(getNumberOfBottles(), getBottleCapacity(), getState().getBottles());
                     Bottle bottle1 = newState.getBottle(i);
                     Bottle bottle2 = newState.getBottle(j);
@@ -78,8 +80,11 @@ public class Node {
                             && (bottle1.getTopColor()==bottle2.getTopColor() || bottle2.isEmpty())){
                         //Pour from bottle i to bottle j
                         int pourA = newState.pour(i,j);
-                        Node newNode = new Node(newState, this, "pour_" + i + "_" + j, getDepth() + 1, getPathCost() + pourA);
-                        expandedNodes.add(newNode);
+                        if(!visitedNodes.contains((newState.toString()))){
+                            Node newNode = new Node(newState, this, "pour_" + i + "_" + j, getDepth() + 1, getPathCost() + pourA);
+                            expandedNodes.add(newNode);
+                            visitedNodes.add(newState.toString());
+                        }
                     }
                 }
             }
