@@ -77,8 +77,8 @@ public class Node {
                     if(bottle2.hasSpace() && !bottle1.isEmpty()
                             && (bottle1.getTopColor()==bottle2.getTopColor() || bottle2.isEmpty())){
                         //Pour from bottle i to bottle j
-                        newState.pour(i,j);
-                        Node newNode = new Node(newState, this, "pour_" + i + "_" + j, getDepth() + 1, getPathCost() + 1);
+                        int pourA = newState.pour(i,j);
+                        Node newNode = new Node(newState, this, "pour_" + i + "_" + j, getDepth() + 1, getPathCost() + pourA);
                         expandedNodes.add(newNode);
                     }
                 }

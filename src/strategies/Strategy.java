@@ -5,8 +5,8 @@ import java.util.Collection;
 
 public interface Strategy {
 
-    public void add(Node node);
-    public Node remove();
+    void add(Node node);
+    Node remove();
 
-    public boolean isEmpty();
+    boolean isEmpty();
 }
