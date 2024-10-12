@@ -1,17 +1,62 @@
+package code;
+
 import strategies.*;
 
 public class WaterSortSearch extends GenericSearch {
 
-    //Todo:WaterSortSearch, which extends GenericSearch, implementing the “Water Sort” search problem.
+    //Todo:code.WaterSortSearch, which extends code.GenericSearch, implementing the “Water Sort” search problem.
+
+
 
     public static void main(String[] args) {
-        System.out.println(WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "BF" , true));
-        System.out.println(WaterSortSearch.solve("3;" + "4;" + "r,y,r,y;" + "y,r,y,r;" + "e,e,e,e;", "BF" , true));
-        System.out.println(WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "DF" , true));
-        System.out.println(WaterSortSearch.solve("3;" + "4;" + "r,y,r,y;" + "y,r,y,r;" + "e,e,e,e;", "DF" , true));
+
+        String grid0 = "3;" +
+                "4;" +
+                "r,y,r,y;" +
+                "y,r,y,r;" +
+                "e,e,e,e;";
+        String grid1 = "5;" +
+                "4;" +
+                "b,y,r,b;" +
+                "b,y,r,r;" +
+                "y,r,b,y;" +
+                "e,e,e,e;" +
+                "e,e,e,e;";
+        String grid2 = "5;" +
+                "4;" +
+                "b,r,o,b;" +
+                "b,r,o,o;" +
+                "r,o,b,r;" +
+                "e,e,e,e;" +
+                "e,e,e,e;";
+        String grid3 = "6;" +
+                "4;" +
+                "g,g,g,r;" +
+                "g,y,r,o;" +
+                "o,r,o,y;" +
+                "y,o,y,b;" +
+                "r,b,b,b;" +
+                "e,e,e,e;";
+        String grid4 = "6;" +
+                "3;" +
+                "r,r,y;" +
+                "b,y,r;" +
+                "y,b,g;" +
+                "g,g,b;" +
+                "e,e,e;" +
+                "e,e,e;";
+        System.out.println(code.WaterSortSearch.solve(grid4, "BF" , true));
+//       System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "DF" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "ID" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "UC" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "GR1" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "GR2" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "AS1" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "AS2" , true));
     }
+
     /**
-     * solve is a method that solves the “Water Sort” search problem. It takes in the following parameters:
+     * solve is a method that solves the “Water Sort” search problem.
      * @param initialState initialState a provided string that defines the parameters of the instance of
      *  the problem. It gives the initial content of each bottle. It is a string provided
      *  in the following format:
@@ -32,8 +77,6 @@ public class WaterSortSearch extends GenericSearch {
      *  plan;pathCost;nodesExpanded
      *  If there is no possible solution, the string ’NOSOLUTION’ should be returned.
      */
-
-
     public static String solve(String initialState,String strategy,Boolean visualize){
 
         Strategy solver = null;
@@ -67,5 +110,8 @@ public class WaterSortSearch extends GenericSearch {
         }
         return genericSolve(initialState, solver, visualize);
     }
+
+
+
 
 }

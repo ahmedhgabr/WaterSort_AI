@@ -1,4 +1,5 @@
-//import code.WaterSortSearch;
+package tests;
+import code.WaterSortSearch;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -375,7 +376,7 @@ assertTrue("The output actions do not lead to a goal state.", pc.applyPlan(grid1
 }
 
 class Checker{
-    private char[][] a;
+    private final char[][] a;
     private int b;
     Checker(String description){
         String[] c = description.split(";");

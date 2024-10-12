@@ -1,3 +1,5 @@
+package code;
+
 import Game.Node;
 import Game.State;
 import strategies.Strategy;
@@ -6,7 +8,7 @@ import java.util.ArrayList;
 
 public class GenericSearch {
 
-    //Todo: GenericSearch, which has the generic implementation of a search problem (as defined in Lecture 2).
+    //Todo: code.GenericSearch, which has the generic implementation of a search problem (as defined in Lecture 2).
 
     ArrayList<Node> nodes = new ArrayList<Node>();
     public static String genericSolve(String initialState, Strategy strategy, Boolean visualize) {
