@@ -47,7 +47,7 @@ public class State {
     }
 
     // pour method to pour some layers with the same color from bottle i to bottle j based on empty space in bottle j
-    public void pour(int i, int j) {
+    public int pour(int i, int j) {
         Bottle bottle1 = getBottle(i);
         Bottle bottle2 = getBottle(j);
         int freeSpace = bottle2.getFreeSpace();
@@ -61,6 +61,7 @@ public class State {
             bottle1TopColorIndex--;
             bottle2TopColorIndex++;
         }
+        return pourAmount;
     }
 
 
@@ -87,7 +88,7 @@ public class State {
             char[] colors = getBottle(i).getColors();
             char color = colors[0];
             for (int j = 1; j < colors.length; j++) {
-                if (colors[j]!=color) {
+                if (colors[j]!=color && colors[j]!='e') {
                     return false;
                 }
             }
