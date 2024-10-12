@@ -98,4 +98,15 @@ public class Node {
         return plan;
     }
 
+
+    public String pathToString() {
+        Node node = this;
+        String path = state.toString();
+        for (int i = depth; i > 0; i--) {
+            node = node.parent;
+            path = node.state.toString() + "\n" + path;
+        }
+        return path;
+    }
+
 }

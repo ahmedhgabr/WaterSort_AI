@@ -26,11 +26,11 @@ public class Bottle {
     }
 
     public boolean isEmpty() {
-        return colors[0] == 'e';
+        return colors[bottleCapacity-1] == 'e';
     }
 
     public boolean isFull() {
-        return colors[bottleCapacity-1] != 'e';
+        return colors[0] != 'e';
     }
 
     public boolean hasSpace() {
@@ -39,7 +39,7 @@ public class Bottle {
 
     public char getTopColor(){
         char color = 'e';
-        for(int i = bottleCapacity-1; i >= 0; i--){
+        for(int i = 0; i < bottleCapacity; i++){
             if(colors[i] != 'e'){
                 color = colors[i];
                 break;
@@ -51,8 +51,11 @@ public class Bottle {
     public int getFreeSpace(){
         int freeSpace = 0;
         for(int i = 0; i < bottleCapacity; i++){
-            if(colors[i] == 'e'){
-                return bottleCapacity - i;
+            if(colors[i] == 'e') {
+                freeSpace++;
+            }
+            else {
+                return freeSpace;
             }
         }
         return freeSpace;
@@ -61,9 +64,9 @@ public class Bottle {
     /* getTopColorIndex is a method that returns the index of the top layer with color in the bottle.
     */
     public int getTopColorIndex(){
-        int index = -1;
-        for(int i = bottleCapacity-1; i >= 0; i--){
-            if(colors[i] != 'e'){
+        int index = bottleCapacity ;
+        for(int i = 0; i < bottleCapacity; i++) {
+            if (colors[i] != 'e') {
                 index = i;
                 break;
             }
@@ -77,12 +80,12 @@ public class Bottle {
      */
     public int getTopColorCapacity(){
         int topColorIndex = getTopColorIndex();
-        if(topColorIndex == -1){  // bottle is empty
+        if(topColorIndex == bottleCapacity){  // bottle is empty
             return 0;
         }
         int topColorCapacity = 1;
         char color = colors[topColorIndex];
-        for(int i = topColorIndex-1; i >= 0; i--){
+        for(int i = topColorIndex+1; i < bottleCapacity; i++){
             if(colors[i] == color){ // same color
                 topColorCapacity++;
             }

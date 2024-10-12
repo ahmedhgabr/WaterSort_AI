@@ -51,15 +51,16 @@ public class State {
         Bottle bottle1 = getBottle(i);
         Bottle bottle2 = getBottle(j);
         int freeSpace = bottle2.getFreeSpace();
+        char topColor = bottle1.getTopColor();
         int topColorCapacity = bottle1.getTopColorCapacity();
         int pourAmount = Math.min(freeSpace, topColorCapacity);
         int bottle1TopColorIndex = bottle1.getTopColorIndex();
         int bottle2TopColorIndex = bottle2.getTopColorIndex();
         for (int k = 0; k < pourAmount; k++) {
-            bottle2.setColor(bottle2TopColorIndex + 1, bottle1.getTopColor());
+            bottle2.setColor(bottle2TopColorIndex -1, topColor);
             bottle1.setColor(bottle1TopColorIndex, 'e');
-            bottle1TopColorIndex--;
-            bottle2TopColorIndex++;
+            bottle1TopColorIndex++;
+            bottle2TopColorIndex--;
         }
         return pourAmount;
     }
@@ -68,7 +69,7 @@ public class State {
     public String toString() {
         String state = numberOfBottles + ";" + bottleCapacity + ";";
         for (int i = 0; i < numberOfBottles; i++) {
-            Game.Bottle bottle = bottles[i];
+            Bottle bottle = bottles[i];
             for (int j = 0; j < bottleCapacity; j++) {
                 state += bottle.getColors()[j];
                 if (j < bottleCapacity - 1) {
@@ -86,8 +87,8 @@ public class State {
     public boolean isGoal() {
         for (int i = 0; i < getNumberOfBottles(); i++) {
             char[] colors = getBottle(i).getColors();
-            char color = colors[0];
-            for (int j = 1; j < colors.length; j++) {
+            char color = colors[bottleCapacity-1];
+            for (int j = 0; j < colors.length; j++) { // [e,e,r,r][e,e,g,g]
                 if (colors[j]!=color && colors[j]!='e') {
                     return false;
                 }
