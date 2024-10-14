@@ -1,8 +1,7 @@
-package strategies;
+package code.strategies;
 
-import Game.Node;
+import code.Game.Node;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 

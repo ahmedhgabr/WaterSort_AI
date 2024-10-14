@@ -1,6 +1,6 @@
 package code;
 
-import strategies.*;
+import code.strategies.*;
 
 public class WaterSortSearch extends GenericSearch {
 
@@ -49,7 +49,7 @@ public class WaterSortSearch extends GenericSearch {
 //       System.out.println(code.WaterSortSearch.solve(grid4, "DF" , true));
 //        System.out.println(code.WaterSortSearch.solve(grid4, "UC" , true));
 //        System.out.println(code.WaterSortSearch.solve(grid4, "ID" , true));
-//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,b,r,b;", "BF" , true));
+        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,b,r,b;", "BF" , true));
 //        System.out.println(code.WaterSortSearch.solve(grid4, "GR1" , true));
 //        System.out.println(code.WaterSortSearch.solve(grid0, "GR2" , true));
 //        System.out.println(code.WaterSortSearch.solve(grid4, "AS1" , true));

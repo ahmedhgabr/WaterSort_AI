@@ -1,6 +1,6 @@
-package strategies;
+package code.strategies;
 
-import Game.Node;
+import code.Game.Node;
 
 import java.util.Stack;
 

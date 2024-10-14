@@ -1,4 +1,4 @@
-package Game;
+package code.Game;
 
 public class State {
     int numberOfBottles;

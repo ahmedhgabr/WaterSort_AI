@@ -1,12 +1,11 @@
-package Game;
+package code.Game;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class Node {
 
-    //Todo: Game.Node, which implements a search-tree node (as defined in Lecture 2).
+    //Todo: code.Game.Node, which implements a search-tree node (as defined in Lecture 2).
 
     State state;
     Node parent;
@@ -131,10 +130,10 @@ public class Node {
         int h = 0;
         for (int i = 0; i < getNumberOfBottles(); i++) {
             Bottle bottle = getState().getBottle(i);
-//            if (bottle.isEmpty()){
-//                h++;
-//                continue;
-//            }
+            if (bottle.isEmpty()){
+                h++;
+                continue;
+            }
             for (int j = 0; j < getBottleCapacity()-1; j++) {
                 if ( bottle.getColors()[j] != 'e' && bottle.getColors()[j] != bottle.getColors()[j+1] ) {
                     h++;

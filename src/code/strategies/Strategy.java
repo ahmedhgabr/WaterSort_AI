@@ -1,7 +1,5 @@
-package strategies;
-import Game.Node;
-
-import java.util.Collection;
+package code.strategies;
+import code.Game.Node;
 
 public interface Strategy {
 
