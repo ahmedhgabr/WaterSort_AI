@@ -45,14 +45,14 @@ public class WaterSortSearch extends GenericSearch {
                 "g,g,b;" +
                 "e,e,e;" +
                 "e,e,e;";
-//        System.out.println(code.WaterSortSearch.solve(grid4, "BF" , true));
+        System.out.println(code.WaterSortSearch.solve(grid4, "BF" , true));
 //       System.out.println(code.WaterSortSearch.solve(grid4, "DF" , true));
         System.out.println(code.WaterSortSearch.solve(grid4, "UC" , true));
-//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "ID" , true));
-//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "UC" , true));
-//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "GR1" , true));
+//        System.out.println(code.WaterSortSearch.solve(grid4, "ID" , true));
+//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,b,r,b;", "BF" , true));
+//        System.out.println(code.WaterSortSearch.solve(grid4, "GR1" , true));
 //        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "GR2" , true));
-//        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "AS1" , true));
+//        System.out.println(code.WaterSortSearch.solve(grid4, "AS1" , true));
 //        System.out.println(code.WaterSortSearch.solve("3;4;b,b,b,r;e,e,e,e;r,r,r,b;", "AS2" , true));
     }
 
@@ -89,8 +89,18 @@ public class WaterSortSearch extends GenericSearch {
                 solver = new DepthFirstSearch();
                 break;
             case "ID":
-                solver = new IterativeDeepeningSearch();
-                break;
+                solver = new DepthLimitedSearch();
+                int i= 0;
+                long maxRuntime = 60000; // 60000 milliseconds = 60 seconds
+                long startTime = System.currentTimeMillis(); // Record the start time
+                while (true){
+                    ((DepthLimitedSearch) solver).setDepth(i);
+                    String result = genericSolve(initialState, solver, visualize);
+                    if (!result.equals("NOSOLUTION") || System.currentTimeMillis() - startTime >= maxRuntime) {
+                        return result;
+                    }
+                    i++;
+                }
             case "UC":
                 solver = new UniformCostSearch();
                 break;

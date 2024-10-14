@@ -14,6 +14,8 @@ public class Node {
     int depth;
     int pathCost;
 
+    int heuristic1;
+    int heuristic2;
 
     public Node(State state, Node parent, String operator, int depth, int pathCost) {
         this.state = state;
@@ -35,8 +37,6 @@ public class Node {
         return state.getBottleCapacity();
     }
 
-
-
     public Node getParent() {
         return parent;
     }
@@ -53,6 +53,13 @@ public class Node {
         return pathCost;
     }
 
+    public int getHeuristic1() {
+        return heuristic1;
+    }
+
+    public int getHeuristic2() {
+        return heuristic2;
+    }
 
 
     public boolean isRoot() {
@@ -92,7 +99,6 @@ public class Node {
         return expandedNodes;
     }
 
-
     public String getPlan() {
         Node node = this;
         String plan = operator;
@@ -118,4 +124,27 @@ public class Node {
         return "[" + depth + " , " + pathCost +"]";
     }
 
+
+
+    public void setHeuristic1() {
+        int h = 5;
+
+        for (int i = 0; i < getNumberOfBottles(); i++) {
+            Bottle bottle = getState().getBottle(i);
+            if (bottle.isEmpty()){
+                h++;
+                continue;
+            }
+            for (int j = 0; j < getBottleCapacity()-1; j++) {
+                if ( bottle.getColors()[j] != 'e' && bottle.getColors()[j] != bottle.getColors()[j+1] ) {
+                    h++;
+                }
+            }
+        }
+        this.heuristic1 = h;
+    }
+
+
+    public void setHeuristic2() {
+    }
 }

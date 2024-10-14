@@ -3,28 +3,39 @@ package strategies;
 import Game.Node;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class AStarSearch implements Strategy {
 
     int i;
-    ArrayList<Node> queue;
-    //Constructor
+    PriorityQueue<Node> priorityQueue;
 
+    //Constructor
     public AStarSearch(int heuristic) {
         i = heuristic;
-        queue = new ArrayList<>();
+        if(i == 1){
+            priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> (n.getHeuristic1()+ n.getPathCost())) );
+        } else {
+            priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> (n.getHeuristic2()+ n.getPathCost())) );
+        }
     }
+
     @Override
     public void add(Node node) {
-        queue.add(node);
+        if (i == 1) {
+            node.setHeuristic1();
+        } else {
+            node.setHeuristic2();
+        }
+        priorityQueue.add(node);
     }
 
     @Override
     public Node remove() {
-        return queue.removeFirst();
+        return priorityQueue.remove();
     }
-
     public boolean isEmpty(){
-        return queue.isEmpty();
+        return priorityQueue.isEmpty();
     }
 }

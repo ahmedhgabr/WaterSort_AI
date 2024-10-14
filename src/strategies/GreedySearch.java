@@ -3,34 +3,41 @@ package strategies;
 import Game.Node;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class GreedySearch implements Strategy {
 
     int i;
-    ArrayList<Node> queue;
-
+    PriorityQueue<Node> priorityQueue;
 
     //Constructor
     public GreedySearch(int heuristic) {
-        queue = new ArrayList<>();
         i = heuristic;
+        if(i == 1){
+            priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> n.getHeuristic1() ));
+        } else {
+            priorityQueue = new PriorityQueue<>(Comparator.comparingInt(n -> n.getHeuristic2()));
+        }
     }
-
-
-
-
 
     @Override
     public void add(Node node) {
-        queue.add(node);
+        if (i == 1) {
+            node.setHeuristic1();
+        } else {
+            node.setHeuristic2();
+        }
+        priorityQueue.add(node);
     }
 
     @Override
     public Node remove() {
-        return queue.removeFirst();
+        return priorityQueue.remove();
+    }
+    public boolean isEmpty(){
+        return priorityQueue.isEmpty();
     }
 
-    public boolean isEmpty(){
-        return queue.isEmpty();
-    }
+
 }

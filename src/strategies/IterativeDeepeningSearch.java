@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 public class IterativeDeepeningSearch implements Strategy {
     ArrayList<Node> queue;
+    int n ;
 
-    public IterativeDeepeningSearch() {
+    public IterativeDeepeningSearch( int n) {
         queue = new ArrayList<>();
+        this.n = n;
     }
 
     @Override
