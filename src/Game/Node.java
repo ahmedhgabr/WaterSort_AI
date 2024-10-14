@@ -127,14 +127,14 @@ public class Node {
 
 
     public void setHeuristic1() {
-        int h = 5;
-
+        // the total of changes in color in each bottle
+        int h = 0;
         for (int i = 0; i < getNumberOfBottles(); i++) {
             Bottle bottle = getState().getBottle(i);
-            if (bottle.isEmpty()){
-                h++;
-                continue;
-            }
+//            if (bottle.isEmpty()){
+//                h++;
+//                continue;
+//            }
             for (int j = 0; j < getBottleCapacity()-1; j++) {
                 if ( bottle.getColors()[j] != 'e' && bottle.getColors()[j] != bottle.getColors()[j+1] ) {
                     h++;
@@ -146,5 +146,14 @@ public class Node {
 
 
     public void setHeuristic2() {
+        // the number of unresolved bottles
+        int h = 0;
+        for (int i = 0; i < getNumberOfBottles(); i++) {
+            if (!state.getBottle(i).isSorted()) {
+                h++;
+            }
+        }
+        this.heuristic2 = h;
     }
+
 }

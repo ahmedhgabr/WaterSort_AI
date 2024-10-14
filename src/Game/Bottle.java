@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.HashSet;
+
 public class Bottle {
 
     char[] colors;
@@ -94,6 +96,16 @@ public class Bottle {
             }
         }
         return topColorCapacity;
+    }
+
+    public boolean isSorted() {
+        HashSet<Character> colorsSet = new HashSet<Character>();
+        for (int i = 0; i < bottleCapacity; i++) {
+            if (colors[i] != 'e') {
+                colorsSet.add(colors[i]);
+            }
+        }
+        return colorsSet.size() == 1;
     }
 
 
