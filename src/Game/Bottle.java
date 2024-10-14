@@ -100,12 +100,15 @@ public class Bottle {
 
     public boolean isSorted() {
         HashSet<Character> colorsSet = new HashSet<Character>();
+        if (isEmpty()) {
+            return true;
+        }
         for (int i = 0; i < bottleCapacity; i++) {
             if (colors[i] != 'e') {
                 colorsSet.add(colors[i]);
             }
         }
-        return colorsSet.size() == 1;
+        return colorsSet.size() == 1 ;
     }
 
 
